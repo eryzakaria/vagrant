@@ -1,0 +1,9 @@
+setup rook
+
+install `kubectl apply -f crds.yaml -f common.yaml -f operator.yaml`
+install `kubectl apply -f cluster-test.yaml`
+install `kubectl apply -f toolbox.yaml`
+install `\rook\deploy\examples\csi\rbd> kubectl apply -f .\storageclass.yaml`
+install `\rook\deploy\examples\csi\rbd> kubectl apply -f ../../filesystem.yaml`
+install cephs
+kubectl patch storageclass rook-ceph-block -p '{"metadata": {"annotations":{"storageclass.beta.kubernetes.io/is-default-class":"true"}}}'
